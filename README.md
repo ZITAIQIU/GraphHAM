@@ -8,6 +8,19 @@ This repository contains the source code and dataset for our paper **"An Efficie
 * networkx>=2.4
 * scikit-learn>=0.20.3
 
-# Usage
-## To run GraphHAM
+# To run GraphHAM
 ```python run.py```
+
+# Datasets
+The datasets used in GraphHAM are Kawarith[1], CrisisLexT6[2], and Twitter2012[3]. We have uploaded the processed Kawarith dataset here.
+
+
+# Ablation Studies
+All variables can be modified in ```config.py```
+
+# Reference
+[1] Alaa Alharbi and Mark Lee. 2021. Kawarith: an Arabic Twitter corpus for crisis events. In Proceedings of the Sixth Arabic Natural Language Processing Workshop. 42–52.
+
+[2] Alexandra Olteanu, Carlos Castillo, Fernando Diaz, and Sarah Vieweg. 2014. Crisislex: A lexicon for collecting and filtering microblogged communications in crises. In Proceedings of the international AAAI conference on web and social media, Vol. 8. 376–385.
+
+[3] Andrew J McMinn, Yashar Moshfeghi, and Joemon M Jose. 2013. Building a large-scale corpus for evaluating event detection on twitter. In Proceedings of the 22nd ACM international conference on Information & Knowledge Management. 409–418.
