@@ -12,7 +12,7 @@ This repository contains the source code and dataset for our paper **"An Efficie
 ```python run.py```
 
 # Datasets
-The datasets used in GraphHAM are Kawarith(https://github.com/alaa-a-a/kawarith)[1], CrisisLexT6[2], and Twitter2012[3]. We have uploaded the processed Kawarith dataset for demonstration.
+The datasets used in GraphHAM are [Kawarith](https://github.com/alaa-a-a/kawarith)[1], [CrisisLexT6](https://crisislex.org/data-collections.html#CrisisLexT26)[2], and [Twitter2012](https://github.com/RingBDStack/KPGNN/tree/main/datasets/Twitter)[3]. To comply with [Twitter’s policies](https://developer.twitter.com/en/developer-terms/agreement-and-policy), we only uploaded the processed Kawarith dataset for demonstration. You can retrieve the complete tweet object via the dataset's link and a valid Twitter API.
 
 
 # Ablation Studies
