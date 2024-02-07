@@ -59,7 +59,7 @@ class HeteData():
 
         with open(label_path, 'rb') as f:
             labels = pkl.load(f)
-        # numpy.int 是老版本的 现在是numpy.int_
+        
         self.train_list = np.array(labels[0], dtype=np.int_)
         self.val_list = np.array(labels[1], dtype=np.int_)
         self.test_list = np.array(labels[2], dtype=np.int_)
