@@ -42,14 +42,6 @@ class HeteData():
             self.edge_type = {0: "TU", 1: "UT", 2: "TE", 3: "ET"}
             self.next_type = {0: [1], 1: [0, 2], 2: [3], 3: [0, 2]}
 
-        with open(self.path + '/node_type', 'rb') as f:
-            self.node_type = pkl.load(f)
-
-        self.homo_graph = nx.read_edgelist(self.path + "/edgelist", nodetype=int)
-
-
-
-
         label_path = self.path + '/labels'
         if train_percent != None:
             label_path += '_'
