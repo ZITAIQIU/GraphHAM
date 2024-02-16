@@ -5,8 +5,7 @@ import random
 
 
 def enum_longest_metapath_index(name_dict, type_dict, length):
-    # 枚举最长的metapath编号列表
-    # 即不保存metapath的任何前缀
+    # Enumerate the longest metapath number list
     hop = []
     for type in type_dict.keys():
         hop.append([type])
@@ -42,8 +41,8 @@ def enum_all_metapath(name_dict, type_dict, length):
 
 
 def enum_metapath_name(name_dict, type_dict, length):
-    # 枚举所有可能的metapath名字
-    # 结果按类型返回
+    # Enumerate all possible metapath names
+    # Results are returned by type
     hop = []
     path_list = []
     result_dict = {}
@@ -86,12 +85,12 @@ def search_single_path(graph_list, src_node, name_list, type_sequence, metapath_
         return {}
     path_result = [[[src_node]]]
     hop = len(type_sequence)
-    # 执行邻接矩阵BFS搜索
+    # Perform an adjacency matrix BFS search
     for l in range(hop):
         path_result.append([])
         for list in path_result[l]:
             path_result[l + 1].extend(list_appender(list, graph_list, type_sequence[l], path_single_limit))
-    # 将搜索结果做量的限制，然后按Metapath名字保存下来
+    # Limit the search results and save them under Metapath's name
     path_dict = {}
     fullname = metapath_name[type_sequence[0]][0]
     path_dict[fullname[0]] = path_result[0]
@@ -105,7 +104,7 @@ def search_single_path(graph_list, src_node, name_list, type_sequence, metapath_
 
 
 def list_appender(list, graph_list, type, path_limit):
-    # 在每条metapath的基础上再BFS搜一步。
+    # Based on each metapath, BFS searches one step further.
     result = []
     if list[-1] not in graph_list[type]: return []
 
@@ -121,8 +120,8 @@ def list_appender(list, graph_list, type, path_limit):
 
 def index_to_features(path_dict, x, select_method="all_node"):
     '''
-    将点序列编号变为features矩阵
-    预先申请空间以加快速度
+    Convert point sequence numbers into features matrix
+    Request space in advance to speed things up
     '''
     result_dict = {}
     for name in path_dict.keys():
@@ -145,8 +144,8 @@ def index_to_features(path_dict, x, select_method="all_node"):
 
 def combine_features_dict(list_of_node_dict, batch_src_index, batch_src_label, DEVICE):
     '''
-    将多个点的特征字典按metapath堆叠起来
-    首先取metapath并集
+    Stack feature dictionaries of multiple points according to metapath
+  
     '''
     metapath_dict = {}
     feature_dict = {}
@@ -156,7 +155,9 @@ def combine_features_dict(list_of_node_dict, batch_src_index, batch_src_label, D
     tensor_dict = {}
     index_dict = {}
     label_dict = {}
-    # 先统计点的类型数目，并将点的编号分好类存在字典里
+    # First count the number of point types, 
+    # and classify the point numbers into categories 
+    #and store them in the dictionary.
     for index in range(len(list_of_node_dict)):
         type = list_of_node_dict[index]['src_type']
         if type not in type_dict:
@@ -169,42 +170,42 @@ def combine_features_dict(list_of_node_dict, batch_src_index, batch_src_label, D
         index_dict[type].append(batch_src_index[index])
 
     for type in type_dict:
-        # 初始化每类的特征、张量和行号记录字典
+        # Initialize the dictionary of features, tensors and row number records for each class
         metapath_dict[type] = set()
         feature_dict[type] = {}
         tensor_dict[type] = {}
         row_dict[type] = {}
         column_dict[type] = {}
-        # 把每类的label转为Tensor
+        # Convert the label of each category to Tensor
         label_dict[type] = torch.Tensor(label_dict[type]).long().to(DEVICE)
         for node_index in type_dict[type]:
-            # 对每类点的metapath取并集
+            # Take the union of the metapaths of each type of points
             metapath_dict[type].update(list_of_node_dict[node_index].keys())
-        # 移除多余的‘src_type' key。这个key在设计上必然存在。
+        # Remove redundant 'src_type' key. This key must exist by design.
         metapath_dict[type].remove('src_type')
 
     for type in type_dict:
         for metapath in metapath_dict[type]:
-            # 初始化行数列表
+            # Initialize
             row_dict[type][metapath] = []
             for node_index in type_dict[type]:
-                # 对每个点的每个metapath统计特征行数，记录特征行数
+                # Count the number of feature rows for each metapath of each point and record the number of feature rows
                 if metapath not in list_of_node_dict[node_index]:
-                    # 该点没有此metapath，记录0
+                    # This point does not have this metapath, record 0
                     row_dict[type][metapath].append(0)
                 else:
                     row_dict[type][metapath].append(list_of_node_dict[node_index][metapath].shape[0])
                     column_dict[type][metapath] = list_of_node_dict[node_index][metapath].shape[1]
-            # 初始化总特征矩阵
-            # 将行数加总
+            # Initialize the total feature matrix
+            # Sum the number of rows
             stack_list = []
             for i in range(len(type_dict[type])):
                 if row_dict[type][metapath][i] == 0:
-                    # 该点没有该metapath，跳过
+                    # This point does not have the metapath, skip
                     continue
                 else:
                     stack_list.append(torch.from_numpy(list_of_node_dict[type_dict[type][i]][metapath]))
-            # 最后利用torch.cat节约时间
+            # Finally, use torch.cat to save time
             feature_dict[type][metapath] = torch.cat(stack_list, dim=0).float().to(DEVICE)
     return feature_dict, index_dict, label_dict, row_dict
 
