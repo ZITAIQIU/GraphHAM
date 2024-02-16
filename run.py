@@ -152,7 +152,7 @@ def train(t_model, model, args):
                                                                DEVICE)
                 else:
                     batch_train_logits_dict, GAN_input = model(batch_train_rows_dict, batch_train_feature_dict,
-                                                               False, DEVICE)  # 获取模型的输出
+                                                               False, DEVICE)  
 
                 for type in batch_train_logits_dict:
                     Loss_h = criterion(batch_train_logits_dict[type], batch_src_label_dict[type])
@@ -177,7 +177,7 @@ def train(t_model, model, args):
                 train_logits_dict, _ = model(train_rows_dict, train_feature_dict, False)
             for type in train_logits_dict:
                 h_output.append(train_logits_dict[type])
-                h_pred.extend(train_logits_dict[type].max(1)[1].cpu().numpy().tolist())  # 预测标签：对预测结果按行取argmax
+                h_pred.extend(train_logits_dict[type].max(1)[1].cpu().numpy().tolist())  
                 h_true.extend(train_label_dict[type].cpu().numpy().tolist())
 
             h_output = torch.cat(h_output, dim=0)
@@ -308,8 +308,8 @@ def val(t_model, model, val_features, val_index, val_label, weights, start_selec
         h_output= []
         for type in val_logits_dict:
             h_output.append(val_logits_dict[type])
-            h_pred.extend(val_logits_dict[type].max(1)[1].cpu().numpy().tolist())  # 预测标签：对预测结果按行取argmax
-            h_true.extend(val_label_dict[type].cpu().numpy().tolist())  # 计算在测试节点/数据上的准确率
+            h_pred.extend(val_logits_dict[type].max(1)[1].cpu().numpy().tolist())  
+            h_true.extend(val_label_dict[type].cpu().numpy().tolist()) 
 
         h_output = torch.cat(h_output, dim=0)
 
