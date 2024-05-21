@@ -20,7 +20,7 @@ All variables can be modified in ```config.py```
 
 # Citation
 If you find this repository helpful, please consider citing the following paper.
-```Python
+```
 @inproceedings{10.1145/3589334.3645526,
 author = {Qiu, Zitai and Ma, Congbo and Wu, Jia and Yang, Jian},
 title = {An Efficient Automatic Meta-Path Selection for Social Event Detection via Hyperbolic Space},
