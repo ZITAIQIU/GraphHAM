@@ -21,19 +21,12 @@ All variables can be modified in ```config.py```
 # Citation
 If you find this repository helpful, please consider citing the following paper.
 ```
-@inproceedings{10.1145/3589334.3645526,
-author = {Qiu, Zitai and Ma, Congbo and Wu, Jia and Yang, Jian},
-title = {An Efficient Automatic Meta-Path Selection for Social Event Detection via Hyperbolic Space},
-year = {2024},
-isbn = {9798400701719},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3589334.3645526},
-doi = {10.1145/3589334.3645526},
-pages = {2519–2529},
-numpages = {11},
-location = {<conf-loc>, <city>Singapore</city>, <country>Singapore</country>, </conf-loc>},
-series = {WWW '24}
+@inproceedings{qiu2024efficient,
+  title={An Efficient Automatic Meta-Path Selection for Social Event Detection via Hyperbolic Space},
+  author={Qiu, Zitai and Ma, Congbo and Wu, Jia and Yang, Jian},
+  booktitle={Proceedings of the ACM on Web Conference 2024},
+  pages={2519--2529},
+  year={2024}
 }
 ```
 
