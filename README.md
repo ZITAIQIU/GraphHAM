@@ -20,7 +20,7 @@ All variables can be modified in ```config.py```
 
 # Citation
 If you find this repository helpful, please consider citing the following paper.
-'''python
+```Python
 @inproceedings{10.1145/3589334.3645526,
 author = {Qiu, Zitai and Ma, Congbo and Wu, Jia and Yang, Jian},
 title = {An Efficient Automatic Meta-Path Selection for Social Event Detection via Hyperbolic Space},
@@ -35,7 +35,7 @@ numpages = {11},
 location = {<conf-loc>, <city>Singapore</city>, <country>Singapore</country>, </conf-loc>},
 series = {WWW '24}
 }
-'''
+```
 
 # Reference
 [1] Alaa Alharbi and Mark Lee. 2021. Kawarith: an Arabic Twitter corpus for crisis events. In Proceedings of the Sixth Arabic Natural Language Processing Workshop. 42–52.
